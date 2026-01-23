@@ -1,26 +1,26 @@
 ---
-import Layout from '../../layouts/Layout.astro';
-import { getCollection, type CollectionEntry } from 'astro:content';
-import { formatDate } from '../../utils/date';
+import { type CollectionEntry, getCollection } from "astro:content";
+import Layout from "../../layouts/Layout.astro";
+import { formatDate } from "../../utils/date";
 
-const posts = (await getCollection('blog')).sort(
-	(a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
+const posts = (await getCollection("blog")).sort(
+  (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
 );
 
 const description = "No AI, just Thoughts.";
 ---
 
 <Layout title="Blog" description={description}>
-	<div class="page-container">
-		<main>
-			<header class="header">
-				<a href="/" class="back-link">&larr; Home</a>
-				<h1>Blog</h1>
-				<p class="subtitle">{description}</p>
-			</header>
-			
-			<section class="posts">
-				{posts.map((post: CollectionEntry<'blog'>) => (
+  <div class="page-container">
+    <main>
+      <header class="header">
+        <a href="/" class="back-link">&larr; Home</a>
+        <h1>Blog</h1>
+        <p class="subtitle">{description}</p>
+      </header>
+
+      <section class="posts">
+        {posts.map((post: CollectionEntry<'blog'>) => (
 					<article class="post-card">
 						<a href={`/blog/${post.slug}`} class="post-link">
 							<h2 class="post-title">{post.data.title}</h2>
@@ -31,103 +31,103 @@ const description = "No AI, just Thoughts.";
 						</a>
 					</article>
 				))}
-			</section>
-		</main>
-	</div>
+      </section>
+    </main>
+  </div>
 </Layout>
 
 <style>
-	main {
-		max-width: 800px;
-		margin: 0 auto;
-		padding: var(--spacing-content-xl);
-	}
+  main {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: var(--spacing-content-xl);
+  }
 
-	.header {
-		margin-bottom: var(--spacing-content-2xl);
-	}
+  .header {
+    margin-bottom: var(--spacing-content-2xl);
+  }
 
-	.back-link {
-		display: inline-block;
-		color: var(--color-text-secondary);
-		text-decoration: none;
-		margin-bottom: var(--spacing-content-lg);
-		transition: color var(--transition-fast);
-	}
+  .back-link {
+    display: inline-block;
+    color: var(--color-text-secondary);
+    text-decoration: none;
+    margin-bottom: var(--spacing-content-lg);
+    transition: color var(--transition-fast);
+  }
 
-	.back-link:hover {
-		color: var(--color-accent);
-	}
+  .back-link:hover {
+    color: var(--color-accent);
+  }
 
-	h1 {
-		font-size: 2.5rem;
-		color: var(--color-text-primary);
-		margin: 0 0 var(--spacing-content-sm) 0;
-	}
+  h1 {
+    font-size: 2.5rem;
+    color: var(--color-text-primary);
+    margin: 0 0 var(--spacing-content-sm) 0;
+  }
 
-	.subtitle {
-		color: var(--color-text-secondary);
-		font-size: 1.1rem;
-		margin: 0;
-	}
+  .subtitle {
+    color: var(--color-text-secondary);
+    font-size: 1.1rem;
+    margin: 0;
+  }
 
-	.posts {
-		display: flex;
-		flex-direction: column;
-		gap: var(--spacing-content-lg);
-	}
+  .posts {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-content-lg);
+  }
 
-	.post-card {
-		background: rgba(30, 41, 59, 0.3);
-		border: 1px solid var(--color-border);
-		border-radius: var(--border-radius);
-		transition: border-color var(--transition-fast);
-	}
+  .post-card {
+    background: rgba(30, 41, 59, 0.3);
+    border: 1px solid var(--color-border);
+    border-radius: var(--border-radius);
+    transition: border-color var(--transition-fast);
+  }
 
-	.post-card:hover {
-		border-color: var(--color-accent);
-	}
+  .post-card:hover {
+    border-color: var(--color-accent);
+  }
 
-	.post-link {
-		display: block;
-		padding: var(--spacing-content-lg);
-		text-decoration: none;
-		color: inherit;
-	}
+  .post-link {
+    display: block;
+    padding: var(--spacing-content-lg);
+    text-decoration: none;
+    color: inherit;
+  }
 
-	.post-title {
-		font-size: 1.5rem;
-		color: var(--color-text-primary);
-		margin: 0 0 var(--spacing-content-sm) 0;
-		transition: color var(--transition-fast);
-	}
+  .post-title {
+    font-size: 1.5rem;
+    color: var(--color-text-primary);
+    margin: 0 0 var(--spacing-content-sm) 0;
+    transition: color var(--transition-fast);
+  }
 
-	.post-card:hover .post-title {
-		color: var(--color-accent);
-	}
+  .post-card:hover .post-title {
+    color: var(--color-accent);
+  }
 
-	.post-description {
-		color: var(--color-text-secondary);
-		margin: 0 0 var(--spacing-content-md) 0;
-		line-height: 1.6;
-	}
+  .post-description {
+    color: var(--color-text-secondary);
+    margin: 0 0 var(--spacing-content-md) 0;
+    line-height: 1.6;
+  }
 
-	time {
-		color: var(--color-text-muted);
-		font-size: 0.875rem;
-	}
+  time {
+    color: var(--color-text-muted);
+    font-size: 0.875rem;
+  }
 
-	@media screen and (max-width: 640px) {
-		main {
-			padding: var(--spacing-content-md);
-		}
+  @media screen and (max-width: 640px) {
+    main {
+      padding: var(--spacing-content-md);
+    }
 
-		h1 {
-			font-size: 2rem;
-		}
+    h1 {
+      font-size: 2rem;
+    }
 
-		.post-title {
-			font-size: 1.25rem;
-		}
-	}
+    .post-title {
+      font-size: 1.25rem;
+    }
+  }
 </style>

@@ -1,60 +1,67 @@
 /* Global Design Tokens */
 :root {
-	/* Colors */
-	--color-bg-primary: #000000;
-	--color-bg-gradient-start: rgba(15, 23, 42, 0.4);
-	--color-bg-gradient-mid: rgba(0, 0, 0, 0.95);
-	--color-text-primary: #f1f5f9;
-	--color-text-secondary: #e2e8f0;
-	--color-text-muted: #64748b;
-	--color-accent: #60a5fa;
-	--color-border: #1e293b;
+  /* Colors */
+  --color-bg-primary: #000000;
+  --color-bg-gradient-start: rgba(15, 23, 42, 0.4);
+  --color-bg-gradient-mid: rgba(0, 0, 0, 0.95);
+  --color-text-primary: #f1f5f9;
+  --color-text-secondary: #e2e8f0;
+  --color-text-muted: #64748b;
+  --color-accent: #60a5fa;
+  --color-border: #1e293b;
 
-	/* Brand Colors */
-	--color-github: #B6BFB8;
-	--color-linkedin: #0A66C2;
-	--color-strava: #FC4C02;
-	--color-instagram: #E1306C;
-	--color-kurzigmantas: #B6BFB8;
+  /* Brand Colors */
+  --color-github: #b6bfb8;
+  --color-linkedin: #0a66c2;
+  --color-strava: #fc4c02;
+  --color-instagram: #e1306c;
+  --color-kurzigmantas: #b6bfb8;
 
-	/* Spacing - Welcome/Home page scale */
-	--spacing-xs: 8px;
-	--spacing-sm: 10px;
-	--spacing-md: 12px;
-	--spacing-lg: 16px;
+  /* Spacing - Welcome/Home page scale */
+  --spacing-xs: 8px;
+  --spacing-sm: 10px;
+  --spacing-md: 12px;
+  --spacing-lg: 16px;
 
-	/* Spacing - Blog/Content page scale */
-	--spacing-content-sm: 8px;
-	--spacing-content-md: 16px;
-	--spacing-content-lg: 24px;
-	--spacing-content-xl: 32px;
-	--spacing-content-2xl: 48px;
+  /* Spacing - Blog/Content page scale */
+  --spacing-content-sm: 8px;
+  --spacing-content-md: 16px;
+  --spacing-content-lg: 24px;
+  --spacing-content-xl: 32px;
+  --spacing-content-2xl: 48px;
 
-	/* Typography */
-	--font-family: Inter, Roboto, 'Helvetica Neue', 'Arial Nova', 'Nimbus Sans', Arial, sans-serif;
-	--font-size-heading: 22px;
+  /* Typography */
+  --font-family:
+    Inter, Roboto, "Helvetica Neue", "Arial Nova", "Nimbus Sans", Arial,
+    sans-serif;
+  --font-size-heading: 22px;
 
-	/* Borders */
-	--border-radius: 10px;
+  /* Borders */
+  --border-radius: 10px;
 
-	/* Transitions */
-	--transition-fast: 0.2s;
-	--transition-medium: 0.3s;
+  /* Transitions */
+  --transition-fast: 0.2s;
+  --transition-medium: 0.3s;
 }
 
 /* Base Styles */
 html,
 body {
-	margin: 0;
-	width: 100%;
-	height: 100%;
-	font-family: var(--font-family);
+  margin: 0;
+  width: 100%;
+  height: 100%;
+  font-family: var(--font-family);
 }
 
 /* Common Background */
 .page-container {
-	min-height: 100vh;
-	background: 
-		radial-gradient(ellipse at center, var(--color-bg-gradient-start) 0%, var(--color-bg-gradient-mid) 70%, var(--color-bg-primary) 100%),
-		var(--color-bg-primary);
+  min-height: 100vh;
+  background:
+    radial-gradient(
+      ellipse at center,
+      var(--color-bg-gradient-start) 0%,
+      var(--color-bg-gradient-mid) 70%,
+      var(--color-bg-primary) 100%
+    ),
+    var(--color-bg-primary);
 }

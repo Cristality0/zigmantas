@@ -1,26 +1,26 @@
 ---
-import githubIcon from '../assets/icons/github-icon.svg';
-import stravaIcon from '../assets/icons/strava-icon.svg';
-import linkedInIcon from '../assets/icons/linkedin-icon.svg';
-import instagramIcon from '../assets/icons/instagram-icon.svg';
-import kurzigmantasIcon from '../assets/icons/kurzigmantas-icon.svg';
-import { socialLinks } from '../config/social';
+import githubIcon from "../assets/icons/github-icon.svg";
+import instagramIcon from "../assets/icons/instagram-icon.svg";
+import kurzigmantasIcon from "../assets/icons/kurzigmantas-icon.svg";
+import linkedInIcon from "../assets/icons/linkedin-icon.svg";
+import stravaIcon from "../assets/icons/strava-icon.svg";
+import { socialLinks } from "../config/social";
 
 const iconMap = {
-	github: githubIcon,
-	linkedin: linkedInIcon,
-	strava: stravaIcon,
-	instagram: instagramIcon,
-	kurzigmantas: kurzigmantasIcon,
+  github: githubIcon,
+  linkedin: linkedInIcon,
+  strava: stravaIcon,
+  instagram: instagramIcon,
+  kurzigmantas: kurzigmantasIcon,
 };
 ---
 
 <div class="container page-container">
-	<main>
-		<section class="hero">
-			<h1>Hi, I'm Jovaras!</h1>
-			<nav class="links" aria-label="Social media links">
-				{socialLinks.map((link) => (
+  <main>
+    <section class="hero">
+      <h1>Hi, I'm Jovaras!</h1>
+      <nav class="links" aria-label="Social media links">
+        {socialLinks.map((link) => (
 					<a
 						href={link.url}
 						class={`link ${link.class}`}
@@ -32,163 +32,163 @@ const iconMap = {
 						{link.name}
 					</a>
 				))}
-			</nav>
-			<a href="/blog" class="blog-link">Blog</a>
-		</section>	
-	</main>
+      </nav>
+      <a href="/blog" class="blog-link">Blog</a>
+    </section>
+  </main>
 </div>
 
 <style>
-	/* Layout */
-	.container {
-		display: flex;
-		align-items: center;
-		justify-content: center;
-	}
+  /* Layout */
+  .container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
 
-	main {
-		width: 100%;
-		display: flex;
-		justify-content: center;
-		align-items: center;
-		padding: var(--spacing-lg);
-	}
+  main {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: var(--spacing-lg);
+  }
 
-	/* Hero Section */
-	.hero {
-		display: flex;
-		align-items: center;
-		flex-direction: column;
-		justify-content: center;
-		gap: calc(var(--spacing-lg) * 2);
-		padding: var(--spacing-lg);
-	}
+  /* Hero Section */
+  .hero {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    gap: calc(var(--spacing-lg) * 2);
+    padding: var(--spacing-lg);
+  }
 
-	h1 {
-		font-size: var(--font-size-heading);
-		margin: 0;
-		color: var(--color-text-primary);
-		text-align: center;
-	}
+  h1 {
+    font-size: var(--font-size-heading);
+    margin: 0;
+    color: var(--color-text-primary);
+    text-align: center;
+  }
 
-	/* Social Links Navigation */
-	.links {
-		display: flex;
-		flex-direction: row;
-		flex-wrap: wrap;
-		gap: var(--spacing-lg);
-		justify-content: center;
-		width: 100%;
-		max-width: 700px;
-	}
+  /* Social Links Navigation */
+  .links {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: var(--spacing-lg);
+    justify-content: center;
+    width: 100%;
+    max-width: 700px;
+  }
 
-	.link {
-		display: flex;
-		align-items: center;
-		justify-content: center;
-		padding: var(--spacing-md) var(--spacing-lg);
-		color: var(--color-text-secondary);
-		text-decoration: none;
-		transition: color var(--transition-fast);
-		background: transparent;
-		border-radius: var(--border-radius);
-		white-space: nowrap;
-	}
+  .link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: var(--spacing-md) var(--spacing-lg);
+    color: var(--color-text-secondary);
+    text-decoration: none;
+    transition: color var(--transition-fast);
+    background: transparent;
+    border-radius: var(--border-radius);
+    white-space: nowrap;
+  }
 
-	.link:hover {
-		color: var(--color-accent);
-	}
+  .link:hover {
+    color: var(--color-accent);
+  }
 
-	/* Focus Indicators for Accessibility */
-	.link:focus-visible {
-		outline: 2px solid var(--color-accent);
-		outline-offset: 2px;
-	}
+  /* Focus Indicators for Accessibility */
+  .link:focus-visible {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 2px;
+  }
 
-	/* Brand-Specific Hover Colors */
-	.link.github:hover {
-		color: var(--color-github);
-	}
+  /* Brand-Specific Hover Colors */
+  .link.github:hover {
+    color: var(--color-github);
+  }
 
-	.link.linkedin:hover {
-		color: var(--color-linkedin);
-	}
+  .link.linkedin:hover {
+    color: var(--color-linkedin);
+  }
 
-	.link.strava:hover {
-		color: var(--color-strava);
-	}
+  .link.strava:hover {
+    color: var(--color-strava);
+  }
 
-	.link.instagram:hover {
-		color: var(--color-instagram);
-	}
+  .link.instagram:hover {
+    color: var(--color-instagram);
+  }
 
-	.link.kurzigmantas:hover {
-		color: var(--color-kurzigmantas);
-	}
+  .link.kurzigmantas:hover {
+    color: var(--color-kurzigmantas);
+  }
 
-	/* Blog Link */
-	.blog-link {
-		color: var(--color-text-secondary);
-		text-decoration: none;
-		transition: color var(--transition-fast);
-	}
+  /* Blog Link */
+  .blog-link {
+    color: var(--color-text-secondary);
+    text-decoration: none;
+    transition: color var(--transition-fast);
+  }
 
-	.blog-link:hover {
-		color: var(--color-accent);
-	}
+  .blog-link:hover {
+    color: var(--color-accent);
+  }
 
-	.blog-link:focus-visible {
-		outline: 2px solid var(--color-accent);
-		outline-offset: 2px;
-	}
+  .blog-link:focus-visible {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 2px;
+  }
 
-	/* Icon Styles */
-	.icon {
-		height: 1em;
-		margin-right: var(--spacing-xs);
-		transition: transform var(--transition-medium) ease;
-	}
+  /* Icon Styles */
+  .icon {
+    height: 1em;
+    margin-right: var(--spacing-xs);
+    transition: transform var(--transition-medium) ease;
+  }
 
-	/* Special Animation for kurzigmantas Icon */
-	.link.kurzigmantas:hover .icon {
-		animation: spin 1s linear infinite;
-	}
+  /* Special Animation for kurzigmantas Icon */
+  .link.kurzigmantas:hover .icon {
+    animation: spin 1s linear infinite;
+  }
 
-	@keyframes spin {
-		from {
-			transform: rotate(0deg);
-		}
-		to {
-			transform: rotate(360deg);
-		}
-	}
+  @keyframes spin {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
 
-	/* Responsive Design */
-	
-	/* Very small screens - force vertical stack */
-	@media screen and (max-width: 480px) {
-		.links {
-			flex-direction: column;
-			align-items: center;
-		}
+  /* Responsive Design */
 
-		.link {
-			padding: calc(var(--spacing-md) + 2px) var(--spacing-lg);
-		}
+  /* Very small screens - force vertical stack */
+  @media screen and (max-width: 480px) {
+    .links {
+      flex-direction: column;
+      align-items: center;
+    }
 
-		h1 {
-			font-size: calc(var(--font-size-heading) + 2px);
-		}
-	}
+    .link {
+      padding: calc(var(--spacing-md) + 2px) var(--spacing-lg);
+    }
 
-	/* Small screens - allow wrapping */
-	@media screen and (min-width: 481px) and (max-width: 768px) {
-		h1 {
-			font-size: calc(var(--font-size-heading) + 2px);
-		}
+    h1 {
+      font-size: calc(var(--font-size-heading) + 2px);
+    }
+  }
 
-		.link {
-			font-size: 15px;
-		}
-	}
+  /* Small screens - allow wrapping */
+  @media screen and (min-width: 481px) and (max-width: 768px) {
+    h1 {
+      font-size: calc(var(--font-size-heading) + 2px);
+    }
+
+    .link {
+      font-size: 15px;
+    }
+  }
 </style>
