@@ -14,9 +14,13 @@
     "check:watch": "astro check --watch"
   },
   "dependencies": {
-    "astro": "^5.16.15"
+    "@astrojs/check": "^0.9.6",
+    "astro": "^5.16.15",
+    "typescript": "^5.9.3"
   },
   "devDependencies": {
+    "@biomejs/biome": "2.3.11",
+    "ultracite": "7.0.12",
     "wrangler": "^4.60.0"
   }
 }
