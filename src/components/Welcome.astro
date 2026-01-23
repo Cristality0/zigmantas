@@ -15,7 +15,7 @@ const iconMap = {
 };
 ---
 
-<div class="container">
+<div class="container page-container">
 	<main>
 		<section class="hero">
 			<h1>Hi, I'm Jovaras!</h1>
@@ -33,47 +33,17 @@ const iconMap = {
 					</a>
 				))}
 			</nav>
+			<a href="/blog" class="blog-link">Blog</a>
 		</section>	
 	</main>
 </div>
 
 <style>
-	/* CSS Custom Properties / Design Tokens */
-	:root {
-		--color-bg-primary: #000000;
-		--color-bg-gradient-start: rgba(15, 23, 42, 0.4);
-		--color-bg-gradient-mid: rgba(0, 0, 0, 0.95);
-		--color-text-primary: #f1f5f9;
-		--color-text-secondary: #e2e8f0;
-		--color-accent: #60a5fa;
-		
-		--color-github: #B6BFB8;
-		--color-linkedin: #0A66C2;
-		--color-strava: #FC4C02;
-		--color-instagram: #E1306C;
-		--color-kurzigmantas: #B6BFB8;
-		
-		--font-size-heading: 22px;
-		--spacing-sm: 8px;
-		--spacing-md: 10px;
-		--spacing-lg: 12px;
-		--spacing-xl: 16px;
-		--border-radius: 10px;
-		
-		--transition-fast: 0.2s;
-		--transition-medium: 0.3s;
-	}
-
 	/* Layout */
 	.container {
-		font-family: Inter, Roboto, 'Helvetica Neue', 'Arial Nova', 'Nimbus Sans', Arial, sans-serif;
-		min-height: 100%;
 		display: flex;
 		align-items: center;
 		justify-content: center;
-		background: 
-			radial-gradient(ellipse at center, var(--color-bg-gradient-start) 0%, var(--color-bg-gradient-mid) 70%, var(--color-bg-primary) 100%),
-			var(--color-bg-primary);
 	}
 
 	main {
@@ -81,6 +51,7 @@ const iconMap = {
 		display: flex;
 		justify-content: center;
 		align-items: center;
+		padding: var(--spacing-lg);
 	}
 
 	/* Hero Section */
@@ -89,8 +60,8 @@ const iconMap = {
 		align-items: center;
 		flex-direction: column;
 		justify-content: center;
-		gap: calc(var(--spacing-xl) * 2);
-		padding: var(--spacing-xl);
+		gap: calc(var(--spacing-lg) * 2);
+		padding: var(--spacing-lg);
 	}
 
 	h1 {
@@ -105,7 +76,7 @@ const iconMap = {
 		display: flex;
 		flex-direction: row;
 		flex-wrap: wrap;
-		gap: var(--spacing-xl);
+		gap: var(--spacing-lg);
 		justify-content: center;
 		width: 100%;
 		max-width: 700px;
@@ -115,7 +86,7 @@ const iconMap = {
 		display: flex;
 		align-items: center;
 		justify-content: center;
-		padding: var(--spacing-lg) var(--spacing-xl);
+		padding: var(--spacing-md) var(--spacing-lg);
 		color: var(--color-text-secondary);
 		text-decoration: none;
 		transition: color var(--transition-fast);
@@ -155,10 +126,26 @@ const iconMap = {
 		color: var(--color-kurzigmantas);
 	}
 
+	/* Blog Link */
+	.blog-link {
+		color: var(--color-text-secondary);
+		text-decoration: none;
+		transition: color var(--transition-fast);
+	}
+
+	.blog-link:hover {
+		color: var(--color-accent);
+	}
+
+	.blog-link:focus-visible {
+		outline: 2px solid var(--color-accent);
+		outline-offset: 2px;
+	}
+
 	/* Icon Styles */
 	.icon {
 		height: 1em;
-		margin-right: var(--spacing-sm);
+		margin-right: var(--spacing-xs);
 		transition: transform var(--transition-medium) ease;
 	}
 
@@ -182,12 +169,11 @@ const iconMap = {
 	@media screen and (max-width: 480px) {
 		.links {
 			flex-direction: column;
-			max-width: 280px;
+			align-items: center;
 		}
 
 		.link {
-			width: 100%;
-			padding: calc(var(--spacing-lg) + 2px) var(--spacing-xl);
+			padding: calc(var(--spacing-md) + 2px) var(--spacing-lg);
 		}
 
 		h1 {
