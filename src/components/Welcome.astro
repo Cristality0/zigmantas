@@ -67,16 +67,20 @@ const iconMap = {
 	/* Layout */
 	.container {
 		font-family: Inter, Roboto, 'Helvetica Neue', 'Arial Nova', 'Nimbus Sans', Arial, sans-serif;
-		height: 100%;
+		min-height: 100%;
+		display: flex;
+		align-items: center;
+		justify-content: center;
 		background: 
 			radial-gradient(ellipse at center, var(--color-bg-gradient-start) 0%, var(--color-bg-gradient-mid) 70%, var(--color-bg-primary) 100%),
 			var(--color-bg-primary);
 	}
 
 	main {
-		height: 100%;
+		width: 100%;
 		display: flex;
 		justify-content: center;
+		align-items: center;
 	}
 
 	/* Hero Section */
@@ -85,29 +89,39 @@ const iconMap = {
 		align-items: center;
 		flex-direction: column;
 		justify-content: center;
+		gap: calc(var(--spacing-xl) * 2);
+		padding: var(--spacing-xl);
 	}
 
 	h1 {
 		font-size: var(--font-size-heading);
-		margin-top: 0.25em;
+		margin: 0;
 		color: var(--color-text-primary);
+		text-align: center;
 	}
 
 	/* Social Links Navigation */
 	.links {
 		display: flex;
+		flex-direction: row;
+		flex-wrap: wrap;
 		gap: var(--spacing-xl);
+		justify-content: center;
+		width: 100%;
+		max-width: 700px;
 	}
 
 	.link {
 		display: flex;
 		align-items: center;
-		padding: var(--spacing-md) var(--spacing-lg);
+		justify-content: center;
+		padding: var(--spacing-lg) var(--spacing-xl);
 		color: var(--color-text-secondary);
 		text-decoration: none;
 		transition: color var(--transition-fast);
 		background: transparent;
 		border-radius: var(--border-radius);
+		white-space: nowrap;
 	}
 
 	.link:hover {
@@ -163,27 +177,32 @@ const iconMap = {
 	}
 
 	/* Responsive Design */
-	@media screen and (max-width: 768px) {
-		.container {
-			display: flex;
-			flex-direction: column;
-		}
-
-		.hero {
-			display: block;
-			padding-top: 10%;
-		}
-
+	
+	/* Very small screens - force vertical stack */
+	@media screen and (max-width: 480px) {
 		.links {
-			flex-wrap: wrap;
+			flex-direction: column;
+			max-width: 280px;
 		}
 
 		.link {
-			padding: 14px 18px;
+			width: 100%;
+			padding: calc(var(--spacing-lg) + 2px) var(--spacing-xl);
 		}
 
 		h1 {
-			line-height: 1.5;
+			font-size: calc(var(--font-size-heading) + 2px);
+		}
+	}
+
+	/* Small screens - allow wrapping */
+	@media screen and (min-width: 481px) and (max-width: 768px) {
+		h1 {
+			font-size: calc(var(--font-size-heading) + 2px);
+		}
+
+		.link {
+			font-size: 15px;
 		}
 	}
 </style>
