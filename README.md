@@ -15,3 +15,8 @@ bun dev
 bun build
 ```
 
+## Deploy to Cloudflare
+
+```sh
+bun run deploy
+```
