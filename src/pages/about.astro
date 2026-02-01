@@ -1,0 +1,111 @@
+---
+import { Image } from "astro:assets";
+import profileImage from "../assets/profile-picture.jpg";
+import Layout from "../layouts/layout.astro";
+
+const description = "Learn more about me!";
+---
+
+<Layout title="About Me" description={description}>
+  <div class="container page-container">
+    <main>
+      <section class="about-section">
+        <h1>About Me</h1>
+        <Image
+          src={profileImage}
+          alt="Profile photo of Jovaras"
+          class="profile-image"
+          width={200}
+          height={200}
+        />
+        <p>
+          Hi, I'm Jovaras, a 22-year-old software developer from Vilnius,
+          Lithuania. My professional arsenal includes various technologies and
+          work positions, mainly QA Engineer and Python Developer. In my spare
+          time I like to work on personal projects, websites (like this one!) or
+          my homelab.
+        </p>
+        <p>
+          You can contact me
+          <a href="/contacts" class="inline-link">Here</a>
+          and learn more about me from my
+          <a href="/blog" class="inline-link">Blogs</a>.
+        </p>
+        <a href="/" class="back-link">← Home</a>
+      </section>
+    </main>
+  </div>
+</Layout>
+
+<style>
+  .container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+  }
+
+  main {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: var(--spacing-lg);
+  }
+
+  .about-section {
+    max-width: 600px;
+    text-align: center;
+  }
+
+  h1 {
+    font-size: var(--font-size-heading);
+    margin: 0 0 calc(var(--spacing-lg) * 2) 0;
+    color: var(--color-text-primary);
+    font-weight: 400;
+    text-align: center;
+  }
+
+  .profile-image {
+    border-radius: 50%;
+    margin: 0 auto var(--spacing-lg);
+    display: block;
+    object-fit: cover;
+  }
+
+  p {
+    font-size: var(--font-size-base);
+    line-height: 1.6;
+    color: var(--color-text-primary);
+    margin-bottom: var(--spacing-lg);
+    text-align: center;
+  }
+
+  .back-link {
+    color: var(--color-text-secondary);
+    text-decoration: none;
+    transition: color var(--transition-fast);
+    font-size: 14px;
+    display: inline-block;
+    margin-top: var(--spacing-lg);
+  }
+
+  .back-link:hover {
+    color: var(--color-accent);
+  }
+
+  .back-link:focus-visible {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 2px;
+  }
+  a.inline-link {
+    color: var(--color-text-secondary);
+    text-decoration: underline;
+  }
+
+  @media screen and (max-width: 480px) {
+    h1 {
+      font-size: calc(var(--font-size-heading) + 2px);
+    }
+  }
+</style>
