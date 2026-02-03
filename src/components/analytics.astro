@@ -1,0 +1,154 @@
+---
+/**
+ * Custom Analytics Component
+ * Provides additional client-side tracking for user interactions
+ * beyond what Cloudflare Web Analytics captures automatically
+ */
+---
+
+<script>
+  // Utility: Throttle function to limit execution frequency
+  function throttle<T extends unknown[]>(
+    func: (...args: T) => void,
+    delay: number
+  ): (...args: T) => void {
+    let timeoutId: ReturnType<typeof setTimeout> | null = null;
+    let lastExecTime = 0;
+
+    return (...args: T): void => {
+      const currentTime = Date.now();
+      const timeSinceLastExec = currentTime - lastExecTime;
+
+      if (timeSinceLastExec >= delay) {
+        // Execute immediately if enough time has passed
+        lastExecTime = currentTime;
+        func(...args);
+      } else if (!timeoutId) {
+        // Schedule execution for later
+        timeoutId = setTimeout(() => {
+          lastExecTime = Date.now();
+          timeoutId = null;
+          func(...args);
+        }, delay - timeSinceLastExec);
+      }
+    };
+  }
+
+  // Track custom events for enhanced analytics
+  interface AnalyticsEvent {
+    category: string;
+    action: string;
+    label?: string;
+    value?: number;
+  }
+
+  function trackEvent(event: AnalyticsEvent): void {
+    // Send custom events to Cloudflare using the beacon API if available
+    if (typeof navigator.sendBeacon === "function") {
+      const data = JSON.stringify({
+        timestamp: new Date().toISOString(),
+        url: window.location.href,
+        ...event,
+      });
+
+      // You can extend this to send to your own Cloudflare Worker endpoint
+      // for custom analytics processing with Workers Analytics Engine
+      console.debug("Analytics event:", event);
+    }
+  }
+
+  // Track outbound link clicks
+  function setupOutboundLinkTracking(): void {
+    document.addEventListener("click", (e: MouseEvent) => {
+      const target = e.target as HTMLElement;
+      const link = target.closest("a");
+
+      if (link?.href && !link.href.startsWith(window.location.origin)) {
+        trackEvent({
+          category: "Outbound Link",
+          action: "Click",
+          label: link.href,
+        });
+      }
+    });
+  }
+
+  // Track form submissions
+  function setupFormTracking(): void {
+    for (const form of document.querySelectorAll("form")) {
+      form.addEventListener("submit", () => {
+        trackEvent({
+          category: "Form",
+          action: "Submit",
+          label: form.id || form.className || "unnamed-form",
+        });
+      });
+    }
+  }
+
+  // Track time on page
+  function setupTimeTracking(): void {
+    const startTime = Date.now();
+
+    const trackTimeOnPage = (): void => {
+      const timeSpent = Math.round((Date.now() - startTime) / 1000);
+      trackEvent({
+        category: "Engagement",
+        action: "Time on Page",
+        value: timeSpent,
+      });
+    };
+
+    // Track every 30 seconds for long sessions
+    const intervalId = setInterval(trackTimeOnPage, 30_000);
+
+    // Track when user leaves the page and clear the interval
+    const handleBeforeUnload = (): void => {
+      trackTimeOnPage();
+      clearInterval(intervalId);
+    };
+
+    window.addEventListener("beforeunload", handleBeforeUnload);
+  }
+
+  // Track scroll depth
+  function setupScrollTracking(): void {
+    const thresholds = [25, 50, 75, 100];
+    const triggered = new Set<number>();
+
+    const checkScrollDepth = (): void => {
+      const scrollableHeight =
+        document.documentElement.scrollHeight - window.innerHeight;
+
+      if (scrollableHeight <= 0) {
+        // No scrollable content; avoid division by zero and skip tracking.
+        return;
+      }
+
+      const scrollPercent = (window.scrollY / scrollableHeight) * 100;
+
+      for (const threshold of thresholds) {
+        if (scrollPercent >= threshold && !triggered.has(threshold)) {
+          triggered.add(threshold);
+          trackEvent({
+            category: "Scroll Depth",
+            action: `${threshold}%`,
+          });
+        }
+      }
+    };
+
+    // Throttle scroll events to fire at most once every 200ms
+    const throttledScrollCheck = throttle(checkScrollDepth, 200);
+
+    window.addEventListener("scroll", throttledScrollCheck, { passive: true });
+  }
+
+  // Initialize tracking on page load
+  document.addEventListener("DOMContentLoaded", () => {
+    setupOutboundLinkTracking();
+    setupFormTracking();
+    setupTimeTracking();
+    setupScrollTracking();
+  });
+</script>

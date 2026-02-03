@@ -1,5 +1,6 @@
 ---
 import "../styles/global.css";
+import Analytics from "../components/analytics.astro";
 
 interface Props {
   title?: string;
@@ -34,6 +35,9 @@ const structuredData = {
   jobTitle: "Software Developer",
   sameAs: [],
 };
+
+// Cloudflare Web Analytics token from environment
+const cfAnalyticsToken = import.meta.env.PUBLIC_CF_WEB_ANALYTICS_TOKEN || "";
 ---
 
 <!doctype html>
@@ -79,8 +83,16 @@ const structuredData = {
       is:inline
       set:html={JSON.stringify(structuredData)}
     />
+
+    <!-- Cloudflare Web Analytics -->
+    <script
+      defer
+      src="https://static.cloudflareinsights.com/beacon.min.js"
+      data-cf-beacon={JSON.stringify({ token: cfAnalyticsToken })}
+    ></script>
   </head>
   <body>
     <slot />
+    <Analytics />
   </body>
 </html>
