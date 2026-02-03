@@ -53,7 +53,8 @@
 
       // You can extend this to send to your own Cloudflare Worker endpoint
       // for custom analytics processing with Workers Analytics Engine
-      console.debug("Analytics event:", event);
+      // Example: navigator.sendBeacon('/api/analytics', data);
+      console.debug("Analytics event:", data);
     }
   }
 

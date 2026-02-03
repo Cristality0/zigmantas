@@ -1,6 +1,7 @@
 ---
 import "../styles/global.css";
 import Analytics from "../components/analytics.astro";
+import Stars from "../components/stars.astro";
 
 interface Props {
   title?: string;
@@ -86,12 +87,14 @@ const cfAnalyticsToken = import.meta.env.PUBLIC_CF_WEB_ANALYTICS_TOKEN || "";
 
     <!-- Cloudflare Web Analytics -->
     <script
+      is:inline
       defer
       src="https://static.cloudflareinsights.com/beacon.min.js"
       data-cf-beacon={JSON.stringify({ token: cfAnalyticsToken })}
     ></script>
   </head>
   <body>
+    <Stars />
     <slot />
     <Analytics />
   </body>
