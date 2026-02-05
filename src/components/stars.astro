@@ -82,6 +82,7 @@
   const BOUNDS_BUFFER = 100;
   const INITIAL_STAGGER_MS = 500;
   const MAX_DELTA_TIME = 100;
+  const STAR_SIZE = 1.5;
 
   function resizeCanvas(): void {
     canvas.width = window.innerWidth;
@@ -290,7 +291,7 @@
 
     const alpha = Math.max(0, Math.min(1, star.brightness));
     ctx.fillStyle = `rgba(255, 255, 255, ${alpha})`;
-    ctx.fillRect(star.x, star.y, 1, 1);
+    ctx.fillRect(star.x, star.y, STAR_SIZE, STAR_SIZE);
   }
 
   let lastTime = 0;
